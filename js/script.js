@@ -179,11 +179,9 @@ const cards = [{
 //----------------------Logica-------------------------------------------------
 
 function render(domElement, array){
-  document.getElementById(domElement);
+  const listaCarte = document.getElementById(domElement);
   array.forEach((element) => {
-    domElement.innerHTML += `<li>${element.cardName}</li>`;
-
+    listaCarte.innerHTML += `<li>${element.cardName}</li>`;
   });
-}
 
-render('card-lyst', cards);
+}
