@@ -179,6 +179,8 @@
             }
   ];
 
+  const boxIcons = document.getElementById('card-lyst');
+
   //----------------------Logica-------------------------------------------------
 
   // Funzione che renderizza a video i nomi delle carte
@@ -194,6 +196,8 @@
       return element.score.power === powerValue;
     });
   }
+
+
 
   function insertPowerIntoArray(array2, array1){
     array1.forEach((element) => {
@@ -211,12 +215,32 @@
 
   }
 
+
+
   //----------------------------Renderizzazione-------------------------
 
   insertPowerIntoArray(powers, cards);
   render('card-lyst', cards);
   insertPowerIntoSelect('power-select', powers);
 
- $('#power-select').change(function(){
-   alert($(this).val());
- })
+  const selectorElement = $('#power-select');
+
+ selectorElement.change(function(){
+   boxIcons.innerHTML = '';
+
+   const typeSelected = parseInt($(this).val()) ;
+
+   let filteredArray = [];
+
+   if(typeSelected !== 'all'){
+     filteredArray = cards.filter((element) =>{
+       return element.score.power === typeSelected;
+     })
+   }else{
+     filteredArray = cards;
+   }
+
+
+   render('card-lyst', filteredArray);
+
+});
