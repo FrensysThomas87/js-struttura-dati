@@ -31,6 +31,10 @@ const editions = {
 
 }
 
+// for(let key in editions){
+//   console.log(key, editions[key]);
+// }
+
 
 const cards = [{
 
@@ -86,6 +90,100 @@ const cards = [{
     }
 
     },
-]
 
-console.log(cards);
+    {
+
+      cardName: 'Scimmia con ascia',
+
+      cost: {
+        genericCostNumber: 2,
+        costFields: [ // colors array con riferimento a fieldCodes
+          fieldCodes[2],
+          fieldCodes[3]
+        ],
+      },
+
+      picture: 'images/g.png',  // da inserire immagine
+      cardType: cardTypes[1],
+      cardObject: 'Monkey',
+
+      editionType: editions['BL'],
+
+      description: 'La scimmia con ascia raccoglie le banane con la sua ascia',
+      story: 'La scimmia con ascia ha un\'intelligenza evoluta anche per spaccare la legna',
+
+      score: {
+        power: 2,  // r
+        toughness: 2
+      }
+
+      },
+
+      {
+
+        cardName: 'Uccello con martello',
+
+        cost: {
+          genericCostNumber: 2,
+          costFields: [ // colors array con riferimento a fieldCodes
+            fieldCodes[0],
+            fieldCodes[1]
+          ],
+        },
+
+        picture: 'images/g.png',  // da inserire immagine
+        cardType: cardTypes[1],
+        cardObject: 'Bird',
+
+        editionType: editions['BL'],
+
+        description: 'Ciaone',
+        story: 'Ciao',
+
+        score: {
+          power: 3,  // r
+          toughness: 2
+        }
+
+        },
+
+        {
+
+          cardName: 'Ombra nera',
+
+          cost: {
+            genericCostNumber: 2,
+            costFields: [ // colors array con riferimento a fieldCodes
+              fieldCodes[0],
+              fieldCodes[1]
+            ],
+          },
+
+          picture: 'images/g.png',  // da inserire immagine
+          cardType: cardTypes[3],
+          cardObject: '',
+
+          editionType: editions['BL'],
+
+          description: 'Ciaone',
+          story: 'Ciao',
+
+          score: {
+            power: 3,  // r
+            toughness: 2
+          }
+
+          }
+];
+
+//----------------------Logica-------------------------------------------------
+
+function render(domElement, array){
+  document.getElementById(domElement);
+  array.forEach((element) => {
+    domElement.innerHTML += `<li>${element.cardName}</li>`;
+
+  });
+}
+
+render('card-lyst', cards);
