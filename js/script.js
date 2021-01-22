@@ -178,10 +178,18 @@ const cards = [{
 
 //----------------------Logica-------------------------------------------------
 
+// Funzione che renderizza a video i nomi delle carte
 function render(domElement, array){
   const listaCarte = document.getElementById(domElement);
   array.forEach((element) => {
     listaCarte.innerHTML += `<li>${element.cardName}</li>`;
   });
-
 }
+
+function filterByPower(powerValue, array){
+  return array.filter((element) =>{
+    return element.score.power === powerValue;
+  });
+}
+
+console.log(filterByPower(3, cards));
