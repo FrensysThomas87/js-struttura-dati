@@ -1,102 +1,77 @@
 
-const fieldCodes = [
-  'W', 'U', 'B', 'R', 'G'
-]
 
-const cardTypes = [
-  'terre',
-  'creature',
-  'incantesimi',
-  'artefatti',
-  'instantanei',
-  'stregonerie'
-]
+  const powers = [];
 
-// Abbiamo creato un oggetto di oggetti, come riferimento
-// di una edizione. Se ad esempio scrivo editions['SP']
-// allora otterrò tutto un oggetto che descrive
-// con più dettagli l'edizione.
-// come oggetto di oggetti, può essere navigato solo con il for-in
-const editions = {
+  const fieldCodes = [
+    'W', 'U', 'B', 'R', 'G'
+  ]
 
-  'BL': {
-      edition: 'Boolean',
-      rarity: 'blue'
-  },
+  const cardTypes = [
+    'terre',
+    'creature',
+    'incantesimi',
+    'artefatti',
+    'instantanei',
+    'stregonerie'
+  ]
 
-  'SP': {
-      edition: 'Special',
-      rarity: 'red'
+  // Abbiamo creato un oggetto di oggetti, come riferimento
+  // di una edizione. Se ad esempio scrivo editions['SP']
+  // allora otterrò tutto un oggetto che descrive
+  // con più dettagli l'edizione.
+  // come oggetto di oggetti, può essere navigato solo con il for-in
+  const editions = {
+
+    'BL': {
+        edition: 'Boolean',
+        rarity: 'blue'
+    },
+
+    'SP': {
+        edition: 'Special',
+        rarity: 'red'
+    }
+
   }
 
-}
-
-// for(let key in editions){
-//   console.log(key, editions[key]);
-// }
+  // for(let key in editions){
+  //   console.log(key, editions[key]);
+  // }
 
 
-const cards = [{
+  const cards = [{
 
-  cardName: 'Grizzly Bears',
-
-  cost: {
-    genericCostNumber: 1,
-    costFields: [ // colors array con riferimento a fieldCodes
-      fieldCodes[0],  // 'W',  - un suo riferimento
-      fieldCodes[2]   // 'B'
-    ],
-  },
-
-  picture: 'images/i.png',
-  cardType: cardTypes[1],
-  cardObject: 'Bear',
-
-  editionType: editions['BL'],
-
-  description: 'Lorem ipsum',
-  story: 'Naltro Lorem Ipsum',
-
-  score: {
-    power: 2,  // filtrarlo per power
-    toughness: 2
-  }
-
-  },
-  {
-
-    cardName: 'Sviluppatore guerriero',
+    cardName: 'Grizzly Bears',
 
     cost: {
-      genericCostNumber: 3,
+      genericCostNumber: 1,
       costFields: [ // colors array con riferimento a fieldCodes
-        fieldCodes[2],
-        fieldCodes[3]
+        fieldCodes[0],  // 'W',  - un suo riferimento
+        fieldCodes[2]   // 'B'
       ],
     },
 
-    picture: 'images/g.png',  // da inserire immagine
+    picture: 'images/i.png',
     cardType: cardTypes[1],
     cardObject: 'Bear',
 
     editionType: editions['BL'],
 
-    description: 'Lo sviluppatore guerriero spezza i byte in bit!',
-    story: 'Lo sviluppatore guerriero è una forma di essere umano evoluto.',
+    description: 'Lorem ipsum',
+    story: 'Naltro Lorem Ipsum',
 
     score: {
-      power: 5,  // r
-      toughness: 3
+      power: 2,  // filtrarlo per power
+      toughness: 2
     }
 
     },
-
     {
 
-      cardName: 'Scimmia con ascia',
+      cardName: 'Sviluppatore guerriero',
 
       cost: {
-        genericCostNumber: 2,
+        genericCostNumber: 3,
         costFields: [ // colors array con riferimento a fieldCodes
           fieldCodes[2],
           fieldCodes[3]
@@ -105,43 +80,43 @@ const cards = [{
 
       picture: 'images/g.png',  // da inserire immagine
       cardType: cardTypes[1],
-      cardObject: 'Monkey',
+      cardObject: 'Bear',
 
       editionType: editions['BL'],
 
-      description: 'La scimmia con ascia raccoglie le banane con la sua ascia',
-      story: 'La scimmia con ascia ha un\'intelligenza evoluta anche per spaccare la legna',
+      description: 'Lo sviluppatore guerriero spezza i byte in bit!',
+      story: 'Lo sviluppatore guerriero è una forma di essere umano evoluto.',
 
       score: {
-        power: 2,  // r
-        toughness: 2
+        power: 5,  // r
+        toughness: 3
       }
 
       },
 
       {
 
-        cardName: 'Uccello con martello',
+        cardName: 'Scimmia con ascia',
 
         cost: {
           genericCostNumber: 2,
           costFields: [ // colors array con riferimento a fieldCodes
-            fieldCodes[0],
-            fieldCodes[1]
+            fieldCodes[2],
+            fieldCodes[3]
           ],
         },
 
         picture: 'images/g.png',  // da inserire immagine
         cardType: cardTypes[1],
-        cardObject: 'Bird',
+        cardObject: 'Monkey',
 
         editionType: editions['BL'],
 
-        description: 'Ciaone',
-        story: 'Ciao',
+        description: 'La scimmia con ascia raccoglie le banane con la sua ascia',
+        story: 'La scimmia con ascia ha un\'intelligenza evoluta anche per spaccare la legna',
 
         score: {
-          power: 3,  // r
+          power: 2,  // r
           toughness: 2
         }
 
@@ -149,7 +124,7 @@ const cards = [{
 
         {
 
-          cardName: 'Ombra nera',
+          cardName: 'Uccello con martello',
 
           cost: {
             genericCostNumber: 2,
@@ -160,8 +135,8 @@ const cards = [{
           },
 
           picture: 'images/g.png',  // da inserire immagine
-          cardType: cardTypes[3],
-          cardObject: '',
+          cardType: cardTypes[1],
+          cardObject: 'Bird',
 
           editionType: editions['BL'],
 
@@ -173,23 +148,75 @@ const cards = [{
             toughness: 2
           }
 
-          }
-];
+          },
 
-//----------------------Logica-------------------------------------------------
+          {
 
-// Funzione che renderizza a video i nomi delle carte
-function render(domElement, array){
-  const listaCarte = document.getElementById(domElement);
-  array.forEach((element) => {
-    listaCarte.innerHTML += `<li>${element.cardName}</li>`;
-  });
-}
+            cardName: 'Ombra nera',
 
-function filterByPower(powerValue, array){
-  return array.filter((element) =>{
-    return element.score.power === powerValue;
-  });
-}
+            cost: {
+              genericCostNumber: 2,
+              costFields: [ // colors array con riferimento a fieldCodes
+                fieldCodes[0],
+                fieldCodes[1]
+              ],
+            },
 
-console.log(filterByPower(3, cards));
+            picture: 'images/g.png',  // da inserire immagine
+            cardType: cardTypes[3],
+            cardObject: '',
+
+            editionType: editions['BL'],
+
+            description: 'Ciaone',
+            story: 'Ciao',
+
+            score: {
+              power: 4,  // r
+              toughness: 2
+            }
+
+            }
+  ];
+
+  //----------------------Logica-------------------------------------------------
+
+  // Funzione che renderizza a video i nomi delle carte
+  function render(domElement, array){
+    const listaCarte = document.getElementById(domElement);
+    array.forEach((element) => {
+      listaCarte.innerHTML += `<li>${element.cardName}</li>`;
+    });
+  }
+
+  function filterByPower(powerValue, array){
+    return array.filter((element) => {
+      return element.score.power === powerValue;
+    });
+  }
+
+  function insertPowerIntoArray(array2, array1){
+    array1.forEach((element) => {
+      if(!array2.includes(element.score.power)){
+        array2.push(element.score.power);
+      }
+    });
+  }
+
+  function insertPowerIntoSelect(domElement, array){
+    array.forEach((element) => {
+      const select = document.getElementById(domElement);
+      select.innerHTML += `<option value="${element}">${element}</option>`
+    });
+
+  }
+
+  //----------------------------Renderizzazione-------------------------
+
+  insertPowerIntoArray(powers, cards);
+  render('card-lyst', cards);
+  insertPowerIntoSelect('power-select', powers);
+
+ $('#power-select').change(function(){
+   alert($(this).val());
+ })
