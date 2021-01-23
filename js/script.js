@@ -217,6 +217,7 @@
 
 
 
+
   //----------------------------Renderizzazione-------------------------
 
   insertPowerIntoArray(powers, cards);
@@ -228,19 +229,16 @@
  selectorElement.change(function(){
    boxIcons.innerHTML = '';
 
-   const typeSelected = parseInt($(this).val()) ;
+   const powerSelected = parseInt($(this).val()) ;
 
-   let filteredArray = [];
+   let filteredArray = filterByPower(powerSelected, cards);
 
-   if(typeSelected !== 'all'){
-     filteredArray = cards.filter((element) =>{
-       return element.score.power === typeSelected;
-     })
+   if(powerSelected !== 'all'){
+     filteredArray;
    }else{
      filteredArray = cards;
    }
 
-
-   render('card-lyst', filteredArray);
+render('card-lyst', filteredArray);
 
 });
