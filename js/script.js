@@ -190,7 +190,10 @@
   function render(domElement, array){
     const listaCarte = document.getElementById(domElement);
     array.forEach((element) => {
-      listaCarte.innerHTML += `<li>${element.cardName}</li>`;
+      listaCarte.innerHTML += `
+      <div>
+        <li style="color:blue;">${element.cardName}</li>
+      </div>`;
     });
   }
 
@@ -232,22 +235,43 @@
 
   }
 
+ //  function renderFiltered(domElement, selectedValue, arrayFiltrato, array){
+ //
+ //    const boxIcone = document.getElementById(domElement);
+ //
+ //    // boxIcone.innerHTML = '';
+ //
+ //     // selectedValue = parseInt($(this).val()) ;
+ //
+ //     arrayFiltrato = filterByPower(selectedValue, array);
+ //
+ //    if(selectedValue !== 'all'){
+ //      arrayFiltrato;
+ //    }else{
+ //      arrayFiltrato = array;
+ //    }
+ //
+ // render(domElement, arrayFiltrato);
+ //  }
 
 
 
   //----------------------------Renderizzazione-------------------------
 
   insertPowerIntoArray(powers, cards);
-  render('card-lyst', cards);
   insertIntoSelect('power-select', powers);
+  render('card-lyst', cards);
+
 
   const selectorElement = $('#power-select');
 
+
  selectorElement.change(function(){
+
    boxIcons.innerHTML = '';
-
+//
    const powerSelected = parseInt($(this).val()) ;
-
+//
    let filteredArray = filterByPower(powerSelected, cards);
 
    if(powerSelected !== 'all'){
@@ -257,6 +281,8 @@
    }
 
 render('card-lyst', filteredArray);
+
+// renderFiltered(boxIcons, powerSelected, filteredArray, cards );
 
 });
 

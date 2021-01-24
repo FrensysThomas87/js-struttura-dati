@@ -3,21 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Struttura Dati</title>
-
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <header>
+      <label for="power-select">Select power level</label>
+      <select name="power-select" id="power-select">
+        <option value="all">ALL</option>
+      </select>
 
-    <label for="power-select">Select power level</label>
-    <select name="power-select" id="power-select">
-      <option value="all">ALL</option>
-    </select><br>
+      <label for="type-select">Seleziona per tipo</label>
+      <select name="type-select" id="type-select">
+        <option value="all">SELEZIONA PER TIPO</option>
+      </select>
+    </header>
 
-    <label for="type-select">Seleziona per tipo</label>
-    <select name="type-select" id="type-select">
-      <option value="all">SELEZIONA PER TIPO</option>
-    </select>
+    <main>
+      <ul id="card-lyst"></ul>
+    </main>
 
-    <ul id="card-lyst"></ul>
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/script.js" charset="utf-8"></script>
