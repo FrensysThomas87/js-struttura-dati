@@ -1,6 +1,9 @@
 
 
   const powers = [];
+  const types = [];
+  const boxIcons = document.getElementById('card-lyst');
+
 
   const fieldCodes = [
     'W', 'U', 'B', 'R', 'G'
@@ -179,7 +182,7 @@
             }
   ];
 
-  const boxIcons = document.getElementById('card-lyst');
+
 
   //----------------------Logica-------------------------------------------------
 
@@ -197,6 +200,12 @@
     });
   }
 
+  function filterByType(typeValue, array){
+    return array.filter((element) => {
+      return element.cardType === typeValue;
+    })
+  }
+
 
 
   function insertPowerIntoArray(array2, array1){
@@ -207,7 +216,15 @@
     });
   }
 
-  function insertPowerIntoSelect(domElement, array){
+  function insertTypeIntoArray(array2, array1){
+    array1.forEach((element) => {
+      if(!array2.includes(element.cardType)){
+        array2.push(element.cardType);
+      }
+    });
+  }
+
+  function insertIntoSelect(domElement, array){
     array.forEach((element) => {
       const select = document.getElementById(domElement);
       select.innerHTML += `<option value="${element}">${element}</option>`
@@ -222,7 +239,7 @@
 
   insertPowerIntoArray(powers, cards);
   render('card-lyst', cards);
-  insertPowerIntoSelect('power-select', powers);
+  insertIntoSelect('power-select', powers);
 
   const selectorElement = $('#power-select');
 
@@ -240,5 +257,31 @@
    }
 
 render('card-lyst', filteredArray);
+
+});
+
+
+const selectForType = $('#type-select');
+
+
+insertTypeIntoArray(types, cards);
+insertIntoSelect('type-select', types);
+
+selectForType.change(function(){
+
+
+  boxIcons.innerHTML = '';
+  const typeValue = $(this).val();
+
+  let filteredArrayByType = filterByType(typeValue, cards);
+
+  if(typeValue !== 'all'){
+    filteredArrayByType;
+  }else{
+    filteredArrayByType = cards;
+  }
+
+  render('card-lyst', filteredArrayByType);
+
 
 });
