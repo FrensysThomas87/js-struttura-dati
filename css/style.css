@@ -40,4 +40,15 @@ ul{
   list-style : none;
   display: flex;
   justify-content: space-between;
+  font-size: 25px;
+}
+
+div{
+  border:1px solid black;
+  width:calc(100% / 5 - 30px); 
+  height:200px;
+  line-height: 200px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #fff;
 }
