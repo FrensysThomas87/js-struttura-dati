@@ -197,12 +197,14 @@
     });
   }
 
+  // FUNZIONE CHE SERVE PER FILTRARE GLI ELEMENTI DA INSERIRE DI VOLTA IN VOLTA NELL'ARRAY DIVISI PER POTERE
   function filterByPower(powerValue, array){
     return array.filter((element) => {
       return element.score.power === powerValue;
     });
   }
 
+  // FUNZIONE CHE SERVE PER FILTRARE GLI ELEMENTI DA INSERIRE DI VOLTA IN VOLTA NELL'ARRAY DIVISI PER TIPO
   function filterByType(typeValue, array){
     return array.filter((element) => {
       return element.cardType === typeValue;
@@ -210,7 +212,7 @@
   }
 
 
-
+  // FUNZIONE CHE PRENDE I LIVELLI DI POTERE DELLE CARTE E LI PUSHA IN UN NUOVO ARRAY
   function insertPowerIntoArray(array2, array1){
     array1.forEach((element) => {
       if(!array2.includes(element.score.power)){
@@ -219,6 +221,7 @@
     });
   }
 
+  // FUNZIONE CHE PRENDE I TIPI DI CARTE E LI PUSHA IN UN NUOVO ARRAY
   function insertTypeIntoArray(array2, array1){
     array1.forEach((element) => {
       if(!array2.includes(element.cardType)){
@@ -227,6 +230,7 @@
     });
   }
 
+  // FUNZIONE CHE INSERISCE I VALORI DELL'ARRAY NELLA SELECT
   function insertIntoSelect(domElement, array){
     array.forEach((element) => {
       const select = document.getElementById(domElement);
@@ -235,24 +239,17 @@
 
   }
 
- //  function renderFiltered(domElement, selectedValue, arrayFiltrato, array){
- //
- //    const boxIcone = document.getElementById(domElement);
- //
- //    // boxIcone.innerHTML = '';
- //
- //     // selectedValue = parseInt($(this).val()) ;
- //
- //     arrayFiltrato = filterByPower(selectedValue, array);
- //
- //    if(selectedValue !== 'all'){
- //      arrayFiltrato;
- //    }else{
- //      arrayFiltrato = array;
- //    }
- //
- // render(domElement, arrayFiltrato);
- //  }
+  // FUNZIONE CHE RENDERIZZA LE CARTE IN BASE AI VALORI SELEZIONATI
+  function renderFiltered(selectedValue, arrayFiltrato, array){
+
+    arrayFiltrato = filterByPower(selectedValue, array);
+
+    if(selectedValue !== 'all'){
+      arrayFiltrato;
+    }else{
+      arrayFiltrato = array;
+    }
+}
 
 
 
@@ -265,24 +262,17 @@
 
   const selectorElement = $('#power-select');
 
-
- selectorElement.change(function(){
+  // SEZIONE CHE RENDERIZZA LE CARTE PER LIVELLO DI POTERE
+  selectorElement.change(function(){
 
    boxIcons.innerHTML = '';
-//
+
    const powerSelected = parseInt($(this).val()) ;
-//
+
    let filteredArray = filterByPower(powerSelected, cards);
 
-   if(powerSelected !== 'all'){
-     filteredArray;
-   }else{
-     filteredArray = cards;
-   }
-
-render('card-lyst', filteredArray);
-
-// renderFiltered(boxIcons, powerSelected, filteredArray, cards );
+   renderFiltered(powerSelected, filteredArray, cards );
+   render('card-lyst', filteredArray);
 
 });
 
@@ -293,21 +283,15 @@ const selectForType = $('#type-select');
 insertTypeIntoArray(types, cards);
 insertIntoSelect('type-select', types);
 
+// SEZIONE CHE RENDERIZZA LE CARTE PER TIPO
 selectForType.change(function(){
-
 
   boxIcons.innerHTML = '';
   const typeValue = $(this).val();
 
   let filteredArrayByType = filterByType(typeValue, cards);
 
-  if(typeValue !== 'all'){
-    filteredArrayByType;
-  }else{
-    filteredArrayByType = cards;
-  }
-
+  renderFiltered(typeValue, filteredArrayByType, cards );
   render('card-lyst', filteredArrayByType);
-
 
 });
