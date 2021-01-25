@@ -236,20 +236,19 @@
       const select = document.getElementById(domElement);
       select.innerHTML += `<option value="${element}">${element}</option>`
     });
-
   }
 
   // FUNZIONE CHE RENDERIZZA LE CARTE IN BASE AI VALORI SELEZIONATI
-  function renderFiltered(selectedValue, arrayFiltrato, array){
-
-    arrayFiltrato = filterByPower(selectedValue, array);
-
-    if(selectedValue !== 'all'){
-      arrayFiltrato;
-    }else{
-      arrayFiltrato = array;
-    }
-}
+  // function renderFiltered(selectedValue, arrayFiltrato, array){
+  //
+  //   arrayFiltrato = filterByPower(selectedValue, array);
+  //
+  //   if(selectedValue !== 'all'){
+  //     arrayFiltrato;
+  //   }else{
+  //     arrayFiltrato = array;
+  //   }
+  // }
 
 
 
@@ -258,8 +257,6 @@
   insertPowerIntoArray(powers, cards);
   insertIntoSelect('power-select', powers);
   render('card-lyst', cards);
-
-
   const selectorElement = $('#power-select');
 
   // SEZIONE CHE RENDERIZZA LE CARTE PER LIVELLO DI POTERE
@@ -267,19 +264,27 @@
 
    boxIcons.innerHTML = '';
 
-   const powerSelected = parseInt($(this).val()) ;
+   let powerSelected ;
+   let filteredArray;
 
-   let filteredArray = filterByPower(powerSelected, cards);
+   if(isNaN($(this).val())){
+     filteredArray = cards
+   }else{
+     powerSelected = parseInt($(this).val());
+     filteredArray = filterByPower(powerSelected, cards);
 
-   renderFiltered(powerSelected, filteredArray, cards );
+   }
+
    render('card-lyst', filteredArray);
 
 });
 
+  selectorElement.change();
+
+
+
 
 const selectForType = $('#type-select');
-
-
 insertTypeIntoArray(types, cards);
 insertIntoSelect('type-select', types);
 
@@ -287,11 +292,16 @@ insertIntoSelect('type-select', types);
 selectForType.change(function(){
 
   boxIcons.innerHTML = '';
-  const typeValue = $(this).val();
 
-  let filteredArrayByType = filterByType(typeValue, cards);
+  let typeValue = $(this).val();
+  let filteredArrayByType;
 
-  renderFiltered(typeValue, filteredArrayByType, cards );
-  render('card-lyst', filteredArrayByType);
+  if(typeValue !== 'all'){
+    filteredArrayByType = filterByType(typeValue, cards);
+  }else{
+    filteredArrayByType = cards;
+  }
+
+render('card-lyst', filteredArrayByType);
 
 });
